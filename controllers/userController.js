@@ -7,7 +7,6 @@ module.exports = {
     getSingleUser(req, res) {
         
     },
-
     createUser(req, res) {
 
     },
