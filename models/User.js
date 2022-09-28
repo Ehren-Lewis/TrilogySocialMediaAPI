@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
+const { User } = require(".");
 const Thoughts = require("./Thoughts");
-const emailRegEx  = "/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/"
+const emailRegEx  = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 
 const validateEmail = (email) => {
     return emailRegEx.test(email)
@@ -23,7 +24,6 @@ const userSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: "Thought"
         }],
-        // refer: { type: Schema.Types.ObjectId, ref: "userSchema"}
 
         friends: [{
             type: Schema.Types.ObjectId,
@@ -42,4 +42,10 @@ userSchema.virtual("friendCount").get(function () {
     return this.friends.count
 })
 
-module.exports = userSchema
+const Users = model("Users", userSchema);
+Users.create({
+    username: "FredGuilly",
+    email: "FredGuill@email.com",
+})
+
+module.exports = Users
