@@ -58,6 +58,10 @@ ThoughtsSchema.virtual("reactionCount").get( function() {
 
 const Thoughts = model("Thoughts", ThoughtsSchema)
 
+// Thoughts.create({
+//     // userId: "633398b647601a9d8ae6b4a7"
+// })
+
 module.exports = Thoughts;
 
 // useNewUrlParser: true 
