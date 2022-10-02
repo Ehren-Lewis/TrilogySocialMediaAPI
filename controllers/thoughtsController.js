@@ -43,8 +43,27 @@ module.exports = {
 
     async addReaction(req, res) {
 
+        const toAddReaction = await Thoughts.findOne({_id: req.params.thoughtId});
+
+        // toAddReaction.reactions.push(req.params.reactionId);
+
+        toAddReaction.reactions.create(req.body);
+
+        await toAddReaction.save();
+
+        res.send(toAddReaction);
+
     },
     async deleteReaction(req, res) {
+
+        const toRemoveReaction = await Thoughts.findOne({_id: req.params.thoughtId});
+
+        toRemoveReaction.reactions.pull(req.params.reactionId);
+
+        toRemoveReaction.save();
+
+        res.json("success")
         
     }
+
 }

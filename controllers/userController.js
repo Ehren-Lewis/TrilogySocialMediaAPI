@@ -23,6 +23,7 @@ module.exports = {
             email: req.body.email
         });
 
+        res.send(newUser);
 
     },
 
@@ -50,7 +51,6 @@ module.exports = {
         // console.log(req);
 
         const toAddFriendTo = await Users.findOne({ _id: req.params.userId});
-        // console.log(toAddFriendTo);
         toAddFriendTo.friends.push(req.params.friendId);
 
     // currentUser.friends.push(sam._id);
