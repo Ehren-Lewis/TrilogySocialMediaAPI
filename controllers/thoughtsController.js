@@ -1,4 +1,4 @@
-const { Users, Thoughts } = require("../models");
+const { Users, Thoughts, Rea } = require("../models");
 
 module.exports = {
     async getThoughts(req, res) {
@@ -47,7 +47,9 @@ module.exports = {
 
         // toAddReaction.reactions.push(req.params.reactionId);
 
-        toAddReaction.reactions.create(req.body);
+        console.log(req.body);
+
+        toAddReaction.reactions.push(req.body);
 
         await toAddReaction.save();
 
