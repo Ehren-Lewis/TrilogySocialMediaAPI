@@ -47,8 +47,6 @@ module.exports = {
 
         // toAddReaction.reactions.push(req.params.reactionId);
 
-        console.log(req.body);
-
         toAddReaction.reactions.push(req.body);
 
         await toAddReaction.save();
@@ -60,11 +58,16 @@ module.exports = {
 
         const toRemoveReaction = await Thoughts.findOne({_id: req.params.thoughtId});
 
+        console.log(req.params.reactionId);
+
+        console.log(toRemoveReaction)
+
+
         toRemoveReaction.reactions.pull(req.params.reactionId);
 
-        toRemoveReaction.save();
+        await toRemoveReaction.save();
 
-        res.json("success")
+        res.json(toRemoveReaction);
         
     }
 
